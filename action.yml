@@ -1,11 +1,11 @@
-name: 'Apache Thrift Actions wrapper'
-description: 'Run Apache Thrift in Github Actions'
+name: 'Apache Thrift Compiler'
+description: 'Run Apache Thrift Compiler in Github Actions'
 branding:
   icon: 'code'
   color: 'blue'
 inputs:
-  command:
-    description: "Command to run"
+  args:
+    description: "Args to pass to thrift"
 runs:
   using: 'docker'
   image: 'Dockerfile'
