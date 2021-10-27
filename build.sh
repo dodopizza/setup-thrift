@@ -22,9 +22,9 @@ buildDeps=" \
 sudo apt-get update \
     && sudo apt-get install -y --no-install-recommends $buildDeps \
     && curl -k -sSL "https://github.com/apache/thrift/archive/$1.targz" -o thrift.tar.gz \
-    && mkdir -p /usr/src/thrift \
-    && tar zxf thrift.tar.gz -C /usr/src/thrift --strip-components=1 \
-    && cd /usr/src/thrift \
+    && mkdir -p ./thrift \
+    && tar zxf thrift.tar.gz -C ./thrift --strip-components=1 \
+    && cd ./thrift \
     && ./bootstrap.sh \
     && ./configure --disable-libs \
     && cat Makefile
