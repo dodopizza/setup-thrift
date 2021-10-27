@@ -6,8 +6,12 @@ description: 'Run Apache Thrift in Github Actions'
 #   configFile:
 #     description: "Path to a config file"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - run: echo Hello world
+      shell: bash
+  # using: 'docker'
+  # image: 'Dockerfile'
   # args:
   # - ${{ inputs.dotCoverCommand }}
   # - ${{ inputs.configFile }}
