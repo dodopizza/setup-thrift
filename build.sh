@@ -19,18 +19,20 @@ buildDeps=" \
     pkg-config \
 ";
 
-sudo apt-get update \
-    && sudo apt-get install -y --no-install-recommends $buildDeps \
-    && curl -k -sSL "https://github.com/apache/thrift/archive/$1.tar.gz" -o thrift.tar.gz \
-    && mkdir -p ./thrift \
-    && tar zxf thrift.tar.gz -C ./thrift --strip-components=1 \
-    && cd ./thrift \
-    && ./bootstrap.sh \
-    && ./configure --disable-libs \
-    && make \
-    && mkdir -p ./dist \
-    && make DESTDIR=./dist install \
-    && ls -laR ./dist
+echo $pwd/dist
+
+# sudo apt-get update \
+#     && sudo apt-get install -y --no-install-recommends $buildDeps \
+#     && curl -k -sSL "https://github.com/apache/thrift/archive/$1.tar.gz" -o thrift.tar.gz \
+#     && mkdir -p ./thrift \
+#     && tar zxf thrift.tar.gz -C ./thrift --strip-components=1 \
+#     && cd ./thrift \
+#     && ./bootstrap.sh \
+#     && ./configure --disable-libs \
+#     && make \
+#     && mkdir -p ./dist \
+#     && make DESTDIR=./dist install \
+#     && ls -laR ${pwd}/dist
 
    # && make \
     # && make install \
