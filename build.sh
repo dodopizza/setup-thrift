@@ -29,7 +29,8 @@ sudo apt-get update \
     && ./configure --disable-libs \
     && make \
     && mkdir -p ./dist \
-    && make DESTDIR=./dist install
+    && make DESTDIR=./dist install \
+    && ls -laR ./dist
 
    # && make \
     # && make install \
