@@ -35,15 +35,15 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
 
       - name: Upload
+        working-directory: ./dist
         run: |
           oras push ghcr.io/dodopizza/thrift-action/binaries:1.0 \
-            ./dist/thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
+            ./thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
 
       - name: Download
+        working-directory: ./download
         run: |
-          mkdir -p ./x \
-          && cd ./x \
-          && oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
-          && tar zxf ./dist/thrift.v0.15.0.tar.gz -C . \
+          && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C . \
           && ls -laR .
