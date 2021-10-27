@@ -19,25 +19,18 @@ buildDeps=" \
     pkg-config \
 ";
 
-curr_dir=$(pwd)
+root_dir=$(pwd)
 
-# sudo apt-get update \
-#     && sudo apt-get install -y --no-install-recommends $buildDeps \
-#     && curl -k -sSL "https://github.com/apache/thrift/archive/$1.tar.gz" -o thrift.tar.gz \
-#     && mkdir -p ./thrift \
-#     && tar zxf thrift.tar.gz -C ./thrift --strip-components=1 \
-#     && cd ./thrift \
-#     && ./bootstrap.sh \
-#     && ./configure --disable-libs \
-#     && make \
-#     && mkdir -p $curr_dir/dist \
-#     && make DESTDIR=$curr_dir/dist install \
-#     && cd $curr_dir/dist \
-#     && tar -czvf thrift.$1.tar.gz ./usr/local/bin/thrift
-
-mkdir -p $curr_dir/dist \
-    && cd $curr_dir/dist \
-    && mkdir -p ./usr/local/bin/ \
-    && touch ./usr/local/bin/thrift \
-    && tar -czvf thrift.$1.tar.gz -C ./usr/local/bin thrift \
-    && ls -lsR .
+sudo apt-get update \
+    && sudo apt-get install -y --no-install-recommends $buildDeps \
+    && curl -k -sSL "https://github.com/apache/thrift/archive/$1.tar.gz" -o thrift.$1.tar.gz \
+    && mkdir -p $root_dir/src/$1/ \
+    && tar zxf thrift.$1.tar.gz -C $root_dir/src/$1 --strip-components=1 \
+    && cd $root_dir/src/$1 \
+    && ./bootstrap.sh \
+    && ./configure --disable-libs \
+    && make \
+    && mkdir -p $root_dir/dist/$1 \
+    && make DESTDIR=$root_dir/dist/$1 install \
+    && cd $root_dir/dist/$1 \
+    && tar -czvf thrift.$1.tar.gz -C ./usr/local/bin thrift

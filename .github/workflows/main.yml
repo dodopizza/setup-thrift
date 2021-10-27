@@ -11,10 +11,10 @@ jobs:
     strategy:
       matrix:
         version:
-          # - v0.13.0
-          # - v0.14.0
-          # - v0.14.1
-          # - v0.14.2
+          - v0.13.0
+          - v0.14.0
+          - v0.14.1
+          - v0.14.2
           - v0.15.0
 
     steps:
@@ -35,15 +35,7 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
 
       - name: Upload
-        working-directory: ./dist
+        working-directory: ./dist/${{ matrix.version }}
         run: |
-          oras push ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+          oras push ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
             ./thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
-
-      - name: Download
-        working-directory: ./download
-        run: |
-          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
-            --media-type application/vnd.unknown.layer.v1+tar.gz \
-          && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C . \
-          && ls -laR .
