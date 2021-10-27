@@ -1,12 +1,52 @@
 name: Main
 
 on:
-  - push
+  push:
+    paths:
+      - '.github/workflows/main.yaml'
+      - 'build.sh'
 
 jobs:
-  build-executable:
-    name: Build executable
+  # build-executable:
+  #   name: Build executable
+  #   runs-on: ubuntu-20.04
+
+  #   strategy:
+  #     matrix:
+  #       version:
+  #         - v0.13.0
+  #         - v0.14.0
+  #         - v0.14.1
+  #         - v0.14.2
+  #         - v0.15.0
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Build thrift
+  #       run: sh ./build.sh ${{ matrix.version }}
+
+  #     - name: Install ORAS
+  #       run: |
+  #         curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz && \
+  #         tar -xvzf oras_0.7.0_linux_amd64.tar.gz && \
+  #         sudo cp ./oras /usr/local/bin/
+
+  #     - name: Login
+  #       run: | 
+  #         echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
+
+  #     - name: Upload
+  #       working-directory: ./dist/${{ matrix.version }}
+  #       run: |
+  #         oras push ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
+  #           ./thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
+
+  test:
+    name: Test
     runs-on: ubuntu-20.04
+    # needs: [ build-executable ]
 
     strategy:
       matrix:
@@ -18,24 +58,17 @@ jobs:
           - v0.15.0
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Build thrift
-        run: sh ./build.sh ${{ matrix.version }}
-
       - name: Install ORAS
         run: |
           curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz && \
           tar -xvzf oras_0.7.0_linux_amd64.tar.gz && \
-          sudo cp ./oras /usr/local/bin/
+          sudo cp ./oras /usr/local/bin/ && \
+          mkdir -p ./dist/${{ matrix.version }}
 
-      - name: Login
-        run: | 
-          echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
-
-      - name: Upload
+      - name: Download
         working-directory: ./dist/${{ matrix.version }}
         run: |
-          oras push ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
-            ./thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
+          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+            --media-type application/vnd.unknown.layer.v1+tar.gz \
+          && chmod +x ./thrift \
+          && ./thrift --version
