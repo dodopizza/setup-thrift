@@ -39,5 +39,5 @@ mkdir -p $curr_dir/dist \
     && cd $curr_dir/dist \
     && mkdir -p ./usr/local/bin/ \
     && touch ./usr/local/bin/thrift \
-    && tar -czvf thrift.$1.tar.gz ./usr/local/bin/thrift \
+    && tar -czvf thrift.$1.tar.gz -C ./usr/local/bin thrift \
     && ls -lsR .
