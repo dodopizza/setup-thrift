@@ -1,10 +1,10 @@
 #!/bin/sh
 set -eu
 
-# command = $1
+# args = $1
 
 cmd="$1"
 
-echo "$cmd"
+echo "thrift $cmd"
 
-sh -c "$cmd"
+sh -c "thrift $cmd"
