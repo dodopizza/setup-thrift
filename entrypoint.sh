@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-# command = $1
+# args = $1
 
 cmd="thrift $@"
 
