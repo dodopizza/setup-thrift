@@ -21,7 +21,7 @@ buildDeps=" \
 
 sudo apt-get update \
     && sudo apt-get install -y --no-install-recommends $buildDeps \
-    && curl -k -sSL "https://github.com/apache/thrift/archive/$1.targz" -o thrift.tar.gz \
+    && curl -k -sSL "https://github.com/apache/thrift/archive/$1.tar.gz" -o thrift.tar.gz \
     && mkdir -p ./thrift \
     && tar zxf thrift.tar.gz -C ./thrift --strip-components=1 \
     && cd ./thrift \
