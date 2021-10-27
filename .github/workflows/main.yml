@@ -41,7 +41,9 @@ jobs:
 
       - name: Download
         run: |
-          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+          mkdir -p ./x \
+          && cd ./x \
+          && oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
-          && mkdir -p ./x \
-          && tar zxf ./dist/thrift.v0.15.0.tar.gz -C ./x
+          && tar zxf ./dist/thrift.v0.15.0.tar.gz -C . \
+          && ls -laR .
