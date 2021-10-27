@@ -1,19 +1,10 @@
 name: 'Apache Thrift Actions wrapper'
 description: 'Run Apache Thrift in Github Actions'
-# inputs:
-#   dotCoverCommand:
-#     description: "Command to pass to DotCover"
-#   configFile:
-#     description: "Path to a config file"
+inputs:
+  command:
+    description: "Command to run"
 runs:
-  using: "composite"
-  steps:
-    - run: chmod +x ${{ github.action_path }}/install.sh
-      shell: bash
-    - run: ${{ github.action_path }}/install.sh
-      shell: bash
-  # using: 'docker'
-  # image: 'Dockerfile'
-  # args:
-  # - ${{ inputs.dotCoverCommand }}
-  # - ${{ inputs.configFile }}
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }}

@@ -37,4 +37,6 @@ RUN buildDeps=" \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/tmp/*
 
-CMD [ "thrift" ]
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
