@@ -1,7 +1,8 @@
 name: 'Apache Thrift Actions wrapper'
 description: 'Run Apache Thrift in Github Actions'
-icon: 'code'
-color: 'blue'
+branding:
+  icon: 'code'
+  color: 'blue'
 inputs:
   command:
     description: "Command to run"
