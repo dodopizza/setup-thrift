@@ -21,11 +21,11 @@ buildDeps=" \
 
 sudo apt-get update \
     && sudo apt-get install -y --no-install-recommends $buildDeps \
-    && rm -rf /var/lib/apt/lists/* \
+    # && rm -rf /var/lib/apt/lists/* \
     && curl -k -sSL "https://github.com/apache/thrift/archive/$1.targz" -o thrift.tar.gz \
     && mkdir -p /usr/src/thrift \
     && tar zxf thrift.tar.gz -C /usr/src/thrift --strip-components=1 \
-    && rm thrift.tar.gz \
+    # && rm thrift.tar.gz \
     && cd /usr/src/thrift \
     && ./bootstrap.sh \
     && ./configure --disable-libs \
