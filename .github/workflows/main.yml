@@ -38,3 +38,8 @@ jobs:
         run: |
           oras push ghcr.io/dodopizza/thrift-action/binaries:1.0 \
             ./dist/thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
+
+      - name: Download
+        run: |
+          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+            --media-type application/vnd.unknown.layer.v1+tar.gz
