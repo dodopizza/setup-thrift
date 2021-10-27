@@ -1,0 +1,13 @@
+name: 'Apache Thrift Actions wrapper'
+description: 'Run Apache Thrift in Github Actions'
+# inputs:
+#   dotCoverCommand:
+#     description: "Command to pass to DotCover"
+#   configFile:
+#     description: "Path to a config file"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  # args:
+  # - ${{ inputs.dotCoverCommand }}
+  # - ${{ inputs.configFile }}
