@@ -1,10 +1,11 @@
 name: Main
 
 on:
-  push:
-    paths:
-      - '.github/workflows/main.yaml'
-      - 'build.sh'
+  - push
+  # :
+  #   paths:
+  #     - '.github/workflows/main.yaml'
+  #     - 'build.sh'
 
 jobs:
   # build-executable:
