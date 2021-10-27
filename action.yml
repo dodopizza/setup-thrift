@@ -1,13 +1,13 @@
-name: 'Apache Thrift Compiler'
-description: 'Run Apache Thrift Compiler in Github Actions'
-branding:
-  icon: 'code'
-  color: 'blue'
-inputs:
-  args:
-    description: "Args to pass to thrift"
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.args }}
+# name: 'Apache Thrift Compiler'
+# description: 'Run Apache Thrift Compiler in Github Actions'
+# branding:
+#   icon: 'code'
+#   color: 'blue'
+# inputs:
+#   args:
+#     description: "Args to pass to thrift"
+# runs:
+#   using: 'docker'
+#   image: 'Dockerfile'
+#   args:
+#     - ${{ inputs.args }}

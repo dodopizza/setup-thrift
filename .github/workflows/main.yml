@@ -1,0 +1,25 @@
+name: Main
+
+on:
+  - push
+
+jobs:
+  build-executable:
+    name: Build executable
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        version:
+          # - v0.13.0
+          # - v0.14.0
+          # - v0.14.1
+          # - v0.14.2
+          - v0.15.0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build thrift executable
+        run: sh ./build.sh ${{ matrix.version }}
