@@ -32,7 +32,7 @@ jobs:
 
       - name: Login
         run: | 
-          echo $GITHUB_TOKEN | oras login https://ghcr.io -u aurokk --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
 
       - name: Upload
         run: |
