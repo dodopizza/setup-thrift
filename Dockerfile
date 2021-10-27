@@ -36,7 +36,3 @@ RUN buildDeps=" \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/tmp/*
-
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

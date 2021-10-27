@@ -19,7 +19,7 @@ buildDeps=" \
     pkg-config \
 ";
 
-sudo apt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf/var/lib/apt/lists/* \
+sudo apt-get update && sudo apt-get install -y --no-install-recommends $buildDeps && rm -rf/var/lib/apt/lists/* \
     && curl -k -sSL "https://github.com/apache/thrift/archive/$1.targz" -o thrift.tar.gz \
     && mkdir -p /usr/src/thrift \
     && tar zxf thrift.tar.gz -C /usr/src/thrift --strip-components=1 \
@@ -32,7 +32,7 @@ sudo apt-get update && apt-get install -y --no-install-recommends $buildDeps && 
     # && make install \
     # && cd / \
     # && rm -rf /usr/src/thrift \
-    # && apt-get purge -y --auto-remove $buildDeps \
+    # && sudo apt-get purge -y --auto-remove $buildDeps \
     # && rm -rf /var/cache/apt/* \
     # && rm -rf /var/lib/apt/lists/* \
     # && rm -rf /tmp/* \
