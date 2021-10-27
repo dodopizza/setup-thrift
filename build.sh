@@ -27,7 +27,8 @@ sudo apt-get update \
     && cd ./thrift \
     && ./bootstrap.sh \
     && ./configure --disable-libs \
-    && cat Makefile
+    && make \
+    && ls -la
 
    # && make \
     # && make install \
