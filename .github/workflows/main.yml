@@ -21,5 +21,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build executable
+      - name: Build thrift
         run: sh ./build.sh ${{ matrix.version }}
+
+      - name: Install ORAS
+        run: |
+          curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz && \
+          tar -xvzf oras_0.7.0_linux_amd64.tar.gz && \
+          sudo cp ./oras /usr/local/bin/
+
+      - name: Login
+        run: | 
+          echo $GITHUB_TOKEN | oras login https://ghcr.io -u aurokk --password-stdin
+
+      - name: Upload
+        run: |
+          oras push ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+            ./dist/thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz

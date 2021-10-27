@@ -19,7 +19,7 @@ buildDeps=" \
     pkg-config \
 ";
 
-echo $pwd/dist
+curr_dir=$(pwd)
 
 # sudo apt-get update \
 #     && sudo apt-get install -y --no-install-recommends $buildDeps \
@@ -30,16 +30,14 @@ echo $pwd/dist
 #     && ./bootstrap.sh \
 #     && ./configure --disable-libs \
 #     && make \
-#     && mkdir -p ./dist \
-#     && make DESTDIR=./dist install \
-#     && ls -laR ${pwd}/dist
+#     && mkdir -p $curr_dir/dist \
+#     && make DESTDIR=$curr_dir/dist install \
+#     && cd $curr_dir/dist \
+#     && tar -czvf thrift.$1.tar.gz ./usr/local/bin/thrift
 
-   # && make \
-    # && make install \
-    # && cd / \
-    # && rm -rf /usr/src/thrift \
-    # && sudo apt-get purge -y --auto-remove $buildDeps \
-    # && rm -rf /var/cache/apt/* \
-    # && rm -rf /var/lib/apt/lists/* \
-    # && rm -rf /tmp/* \
-    # && rm -rf /var/tmp/*
+mkdir -p $curr_dir/dist \
+    && cd $curr_dir/dist \
+    && mkdir -p ./usr/local/bin/ \
+    && touch ./usr/local/bin/thrift \
+    && tar -czvf thrift.$1.tar.gz ./usr/local/bin/thrift \
+    && ls -lsR .
