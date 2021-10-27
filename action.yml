@@ -8,7 +8,7 @@ description: 'Run Apache Thrift in Github Actions'
 runs:
   using: "composite"
   steps:
-    - run: echo Hello world
+    - run: ./install.sh
       shell: bash
   # using: 'docker'
   # image: 'Dockerfile'
