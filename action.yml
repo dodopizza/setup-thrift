@@ -8,6 +8,8 @@ description: 'Run Apache Thrift in Github Actions'
 runs:
   using: "composite"
   steps:
+    - run: chmod +x ${{ github.action_path }}/install.sh
+      shell: bash
     - run: ${{ github.action_path }}/install.sh
       shell: bash
   # using: 'docker'
