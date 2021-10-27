@@ -71,5 +71,6 @@ jobs:
         run: |
           oras pull ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
+          && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C . \
           && chmod +x ./thrift \
           && ./thrift --version
