@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/sh
 set -eu
 
 # command = $1
