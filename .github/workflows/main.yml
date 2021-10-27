@@ -69,7 +69,7 @@ jobs:
       - name: Download
         working-directory: ./dist/${{ matrix.version }}
         run: |
-          oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
+          oras pull ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
           && chmod +x ./thrift \
           && ./thrift --version
