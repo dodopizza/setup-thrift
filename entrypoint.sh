@@ -3,7 +3,7 @@ set -eu
 
 # command = $1
 
-cmd="thrift $1 $2 $3"
+cmd="thrift $@"
 
 echo "$cmd"
 
