@@ -28,7 +28,8 @@ sudo apt-get update \
     && ./bootstrap.sh \
     && ./configure --disable-libs \
     && make \
-    && ls -la
+    && mkdir -p ./dist \
+    && make DESTDIR=./dist install
 
    # && make \
     # && make install \
