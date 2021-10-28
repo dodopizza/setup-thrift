@@ -83,7 +83,7 @@ jobs:
           && echo "::set-output name=thrift_version::v${thrift_version}"
 
       - name: Assert
-        if: ${{ matrix.version }} != ${{ steps.run.outputs.thrift_version }}
+        if: ${{ matrix.version != steps.run.outputs.thrift_version }}
         run: |
           echo ${{ matrix.version }} ${{ steps.run.outputs.thrift_version }}
           exit 1
