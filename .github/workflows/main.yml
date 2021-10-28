@@ -78,7 +78,7 @@ jobs:
         working-directory: ./dist/${{ matrix.version }}
         run: |
           chmod +x ./thrift \
-          && thrift_version=$(./thrift --version) \
+          && thrift_version=$(./thrift --version | grep -Eo '[0-9\.]+') \
           && echo "Thrift version: ${thrift_version}" \
           && echo "::set-output name=thrift_version::${thrift_version}"
 
