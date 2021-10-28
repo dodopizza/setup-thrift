@@ -52,11 +52,11 @@ jobs:
     strategy:
       matrix:
         version:
-          - 0.13.0
-          - 0.14.0
-          - 0.14.1
-          - 0.14.2
-          - 0.15.0
+          - v0.13.0
+          - v0.14.0
+          - v0.14.1
+          - v0.14.2
+          - v0.15.0
 
     steps:
       - name: Install ORAS
@@ -80,7 +80,7 @@ jobs:
           chmod +x ./thrift \
           && thrift_version=$(./thrift --version | grep -Eo '[0-9\.]+') \
           && echo "Thrift version: ${thrift_version}" \
-          && echo "::set-output name=thrift_version::${thrift_version}"
+          && echo "::set-output name=thrift_version::v${thrift_version}"
 
       - name: Assert
         if: ${{ matrix.version }} != ${{ steps.run.outputs.thrift_version }}
