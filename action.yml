@@ -1,11 +1,11 @@
-name: 'Install Apache Thrift Compiler'
-description: 'Install Apache Thrift Compiler in Github Actions'
+name: 'Setup Apache Thrift Compiler'
+description: 'Setup Apache Thrift Compiler in Github Actions'
 branding:
   icon: 'code'
   color: 'blue'
 inputs:
   version:
-    description: 'Thrift version to install'
+    description: 'Thrift version to setup'
     required: true
     default: '0.15.0'
 runs:
