@@ -23,13 +23,13 @@ runs:
       run: |
         curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz \
         && tar -xvzf oras_0.7.0_linux_amd64.tar.gz \
-        && sudo cp ./oras /usr/local/bin/
+        && sudo ln -s $(pwd)/oras /usr/local/bin/oras
 
     - name: Install thrift
       shell: bash
       working-directory: ./.setup-thrift/thrift
       run: |
-        oras pull ghcr.io/dodopizza/thrift-action/binaries:v${{ inputs.version }} \
+        oras pull ghcr.io/dodopizza/setup-thrift/binaries:v${{ inputs.version }} \
           --media-type application/vnd.unknown.layer.v1+tar.gz \
         && tar zxf ./thrift.v${{ inputs.version }}.tar.gz -C . \
-        && sudo cp ./thrift /usr/local/bin/
+        && sudo ln -s $(pwd)/thrift /usr/local/bin/thrift

@@ -40,7 +40,7 @@ jobs:
       - name: Upload
         working-directory: ./dist/${{ matrix.version }}
         run: |
-          oras push ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
+          oras push ghcr.io/dodopizza/setup-thrift/binaries:${{ matrix.version }} \
             ./thrift.${{ matrix.version }}.tar.gz:application/vnd.unknown.layer.v1+tar.gz
 
   test:
@@ -68,7 +68,7 @@ jobs:
       - name: Download
         working-directory: ./dist/${{ matrix.version }}
         run: |
-          oras pull ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
+          oras pull ghcr.io/dodopizza/setup-thrift/binaries:${{ matrix.version }} \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
           && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C .
 
