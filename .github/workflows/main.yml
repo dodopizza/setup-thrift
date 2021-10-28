@@ -52,11 +52,11 @@ jobs:
     strategy:
       matrix:
         version:
-          - v0.13.0
-          - v0.14.0
-          - v0.14.1
-          - v0.14.2
-          - v0.15.0
+          - 0.13.0
+          - 0.14.0
+          - 0.14.1
+          - 0.14.2
+          - 0.15.0
 
     steps:
       - name: Install ORAS
