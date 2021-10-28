@@ -35,7 +35,7 @@ jobs:
   #         sudo cp ./oras /usr/local/bin/
 
   #     - name: Login
-  #       run: | 
+  #       run: |
   #         echo ${{ secrets.GITHUB_TOKEN }} | oras login https://ghcr.io -u aurokk --password-stdin
 
   #     - name: Upload
@@ -61,16 +61,27 @@ jobs:
     steps:
       - name: Install ORAS
         run: |
-          curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz && \
-          tar -xvzf oras_0.7.0_linux_amd64.tar.gz && \
-          sudo cp ./oras /usr/local/bin/ && \
-          mkdir -p ./dist/${{ matrix.version }}
+          curl -sLO  https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz \
+          && tar -xvzf oras_0.7.0_linux_amd64.tar.gz \
+          && sudo cp ./oras /usr/local/bin/ \
+          && mkdir -p ./dist/${{ matrix.version }}
 
       - name: Download
         working-directory: ./dist/${{ matrix.version }}
         run: |
           oras pull ghcr.io/dodopizza/thrift-action/binaries:${{ matrix.version }} \
             --media-type application/vnd.unknown.layer.v1+tar.gz \
-          && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C . \
-          && chmod +x ./thrift \
-          && ./thrift --version
+          && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C .
+
+      - name: Run
+        id: run
+        run: |
+          chmod +x ./thrift \
+          && thrift_version=$(./thrift --version) \
+          && echo "Thrift version: ${thrift_version}" \
+          && echo "::set-output name=thrift_version::${thrift_version}"
+
+      - name: Assert
+        if: ${{ matrix.version }} == ${{ steps.run.outputs.thrift_version }}
+        run: |
+          exit 1
