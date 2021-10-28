@@ -2,24 +2,14 @@
 
 ## Inputs
 
-### `args`
+### `version`
 
-Args to pass to thrift. e.g. `./src/plugin.thrift`
+Thrift version e.g. `0.15.0`
 
 ## Example usage
 
 ```yaml
-uses: dodopizza/thrift-action@v1
+uses: dodopizza/setup-thrift@v1
 with:
-  args: --gen netstd -o ./nuget/Pay.Specs -strict -r ./src/plugin.thrift
-```
-
-```
-- name: Download
-  working-directory: ./download
-  run: |
-    oras pull ghcr.io/dodopizza/thrift-action/binaries:1.0 \
-      --media-type application/vnd.unknown.layer.v1+tar.gz \
-    && tar zxf ./thrift.${{ matrix.version }}.tar.gz -C . \
-    && ls -laR .
+  version: 0.15.0
 ```
