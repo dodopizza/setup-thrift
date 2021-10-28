@@ -75,6 +75,7 @@ jobs:
 
       - name: Run
         id: run
+        working-directory: ./dist/${{ matrix.version }}
         run: |
           chmod +x ./thrift \
           && thrift_version=$(./thrift --version) \
