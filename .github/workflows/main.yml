@@ -85,5 +85,5 @@ jobs:
       - name: Assert
         if: ${{ matrix.version != steps.run.outputs.thrift_version }}
         run: |
-          echo ${{ matrix.version }} ${{ steps.run.outputs.thrift_version }}
+          echo ${{ matrix.version }} != ${{ steps.run.outputs.thrift_version }}
           exit 1
