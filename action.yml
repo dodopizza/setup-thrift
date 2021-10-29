@@ -1,5 +1,5 @@
-name: 'Setup Apache Thrift Compiler'
-description: 'Setup Apache Thrift Compiler in Github Actions'
+name: 'Setup Apache Thrift'
+description: 'Setup Apache Thrift in Github Actions'
 branding:
   icon: 'code'
   color: 'blue'
