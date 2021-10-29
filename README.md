@@ -1,4 +1,4 @@
-# Apache Thrift Compiler Github Action
+# Setup Apache Thrift Github Action
 
 ## Inputs
 
